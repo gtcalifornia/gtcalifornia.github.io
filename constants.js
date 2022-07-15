@@ -32,6 +32,10 @@ const options = [
         "value": "BFS"
     },
     {
+        "text": "Berlin Brandenburg",
+        "value": "BER"
+    },
+    {
         "text": "Bologna",
         "value": "BLQ"
     },
@@ -44,6 +48,10 @@ const options = [
         "value": "BTS"
     },
     {
+        "text": "Bremen",
+        "value": "BRE"
+    },
+    {
         "text": "Brüssel",
         "value": "BRU"
     },
@@ -52,12 +60,28 @@ const options = [
         "value": "BUD"
     },
     {
+        "text": "Cologne",
+        "value": "CGN"
+    },
+    {
         "text": "Danzig",
         "value": null
     },
     {
+        "text": "Dortmund",
+        "value": "DTM"
+    },
+    {
+        "text": "Dresden",
+        "value": "DRS"
+    },
+    {
         "text": "Dublin",
         "value": "DUB"
+    },
+    {
+        "text": "Dusseldorf Weeze",
+        "value": "NRN"
     },
     {
         "text": "Edinburgh",
@@ -70,6 +94,10 @@ const options = [
     {
         "text": "Fas",
         "value": "FEZ"
+    },
+    {
+        "text": "Frankfurt-Hahn",
+        "value": "HHN"
     },
     {
         "text": "Fuerteventura",
@@ -88,6 +116,10 @@ const options = [
         "value": null
     },
     {
+        "text": "Hamburg",
+        "value": "HAM"
+    },
+    {
         "text": "Ibiza",
         "value": "IBZ"
     },
@@ -104,10 +136,6 @@ const options = [
         "value": "NOC"
     },
     {
-        "text": "Köln",
-        "value": "CGN"
-    },
-    {
         "text": "Kopenhagen",
         "value": "CPH"
     },
@@ -116,12 +144,24 @@ const options = [
         "value": "KRK"
     },
     {
+        "text": "Köln",
+        "value": "CGN"
+    },
+    {
         "text": "Lissabon",
         "value": "LIS"
     },
     {
         "text": "Liverpool",
         "value": "LPL"
+    },
+    {
+        "text": "London Gatwick",
+        "value": "LGW"
+    },
+    {
+        "text": "London Luton",
+        "value": "LTN"
     },
     {
         "text": "London",
@@ -150,6 +190,10 @@ const options = [
     {
         "text": "Marseille",
         "value": "MRS"
+    },
+    {
+        "text": "Memmingen",
+        "value": "FMM"
     },
     {
         "text": "Neapel",
@@ -184,6 +228,14 @@ const options = [
         "value": "PAR"
     },
     {
+        "text": "Pescara",
+        "value": "PSR"
+    },
+    {
+        "text": "Pisa",
+        "value": "PSA"
+    },
+    {
         "text": "Pisa",
         "value": "PSA"
     },
@@ -216,12 +268,20 @@ const options = [
         "value": "SNN"
     },
     {
+        "text": "Sofia",
+        "value": "SOF"
+    },
+    {
         "text": "Split",
         "value": "SPU"
     },
     {
         "text": "Strasbourg",
         "value": "SXB"
+    },
+    {
+        "text": "Tallinn",
+        "value": "TLL"
     },
     {
         "text": "Teneriffa",
@@ -240,68 +300,12 @@ const options = [
         "value": "WAW"
     },
     {
-        "text": "Berlin Brandenburg",
-        "value": "BER"
-    },
-    {
-        "text": "Bremen",
-        "value": "BRE"
-    },
-    {
-        "text": "Cologne",
-        "value": "CGN"
-    },
-    {
-        "text": "London Gatwick",
-        "value": "LGW"
-    },
-    {
-        "text": "London Luton",
-        "value": "LTN"
-    },
-    {
-        "text": "Memmingen",
-        "value": "FMM"
-    },
-    {
-        "text": "Pisa",
-        "value": "PSA"
-    },
-    {
-        "text": "Pescara",
-        "value": "PSR"
-    },
-    {
-        "text": "Sofia",
-        "value": "SOF"
-    },
-    {
         "text": "Zadar",
         "value": "ZAD"
     },
     {
         "text": "Zagreb",
         "value": "ZAG"
-    },
-    {
-        "text": "Dortmund",
-        "value": "DTM"
-    },
-    {
-        "text": "Dresden",
-        "value": "DRS"
-    },
-    {
-        "text": "Dusseldorf Weeze",
-        "value": "NRN"
-    },
-    {
-        "text": "Frankfurt-Hahn",
-        "value": "HHN"
-    },
-    {
-        "text": "Hamburg",
-        "value": "HAM"
     }
 ]
 
