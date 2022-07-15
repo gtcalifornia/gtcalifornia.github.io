@@ -18,7 +18,7 @@
 
 <body>
 
-    <div class="col-lg-8 mx-auto p-3 py-md-5">
+    <div class="col-lg-8 col-sm-12 mx-auto p-3 py-md-5">
         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
             <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
                 <svg xmlns="https://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94"
@@ -34,34 +34,44 @@
 
         <main>
             <h1>Ucuzluk zamani amk</h1>
-            <div class="input-group mb-3">
-                <select class="form-control selcls" id="cheap_location">
-                    <option value="FMM">Memmingen</option>
-                    <option value="SOF">Sofia</option>
-                    <option value="PSA">Pisa</option>
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <select class="form-control selcls" id="cheap_location">
+                            <option value="FMM">Memmingen</option>
+                            <option value="SOF">Sofia</option>
+                            <option value="PSA">Pisa</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="budget" placeholder="Butce (i.e: 15)" aria-label="budget">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <input class="form-control" placeholder="Baslangic Gunu" type="text" id="startDate">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <input class="form-control" placeholder="Bitis Gunu" type="text" id="endDate">
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
-                </select>
-
-                <span class="input-group-text">-</span>
-
-                <input type="text" class="form-control" id="budget" placeholder="Butce (i.e: 15)" aria-label="budget">
-            </div>
-            <div class="input-group mb-3">
-                <input class="form-control" placeholder="Baslangic Gunu" type="text" id="startDate">
-                <span class="input-group-text">-</span>
-                <input class="form-control" placeholder="Bitis Gunu" type="text" id="endDate">
-            </div>
 
             <div class="mb-5">
                 <button class="btn btn-primary btn px-2" onclick="increaseDay()">Sonraki Gun</button>
                 <button class="btn btn-primary btn px-2" onclick="increaseWeek()">Sonraki 7 Gun</button>
-
                 <button class="btn btn-success btn px-2" onclick="doGetRequest()">Ara</button>
             </div>
 
             <div class="row g-5">
-
                 <div class="col-md">
                     <table id="info_table" class="table">
                         <thead>
