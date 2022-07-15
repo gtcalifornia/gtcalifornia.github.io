@@ -16,41 +16,50 @@ async function doGetRequest() {
     let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
     let res = await axios.get(`${RYAN_AIR_API_URL}`);
     let data = res.data;
+    console.log(data.total)
     const table = document.querySelector("table");
-    for (let i = 0; i < 31; i++) {
-        var row = table.insertRow();
+    if (data.total > 1) {
+        document.getElementById("error_message").innerHTML = 'Hadi iyi yolculuklar..';
+        document.getElementById("info_table").style.visibility = "visible";
+        for (let i = 0; i < 31; i++) {
+            var row = table.insertRow();
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.arrivalAirport.name
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.arrivalAirport.name
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.flightNumber
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.flightNumber
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.price.value
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.price.value
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.price.currencyCode
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.price.currencyCode
 
-        var cell = row.insertCell();
-        cell.innerHTML = data.fares[i].outbound.departureDate
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.departureDate
+        }
+    }
+    else {
+        document.getElementById("error_message").innerHTML = "Bu butce ile evinde otur aq.";
+        document.getElementById("info_table").style.visibility = "hidden";
     }
 }
 
 function increaseDay() {
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
-    
+
     newStartDate.setDate(newStartDate.getDate() + 1);
     newEndDate.setDate(newEndDate.getDate() + 1);
-    
+
     var ys = newStartDate.getFullYear(),
         ms = newStartDate.getMonth() + 1, // january is month 0 in javascript
         ds = newStartDate.getDate();
-    
+
     var ye = newEndDate.getFullYear(),
         me = newEndDate.getMonth() + 1, // january is month 0 in javascript
         de = newEndDate.getDate();
@@ -67,14 +76,14 @@ function increaseDay() {
 function increaseWeek() {
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
-    
+
     newStartDate.setDate(newStartDate.getDate() + 7);
     newEndDate.setDate(newEndDate.getDate() + 7);
-    
+
     var ys = newStartDate.getFullYear(),
         ms = newStartDate.getMonth() + 1, // january is month 0 in javascript
         ds = newStartDate.getDate();
-    
+
     var ye = newEndDate.getFullYear(),
         me = newEndDate.getMonth() + 1, // january is month 0 in javascript
         de = newEndDate.getDate();

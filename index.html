@@ -36,32 +36,36 @@
             <h1>Ucuzluk zamani amk</h1>
             <div class="container">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <div class="input-group mb-3">
-                        <select class="form-control selcls" id="cheap_location">
-                            <option value="FMM">Memmingen</option>
-                            <option value="SOF">Sofia</option>
-                            <option value="PSA">Pisa</option>
-                        </select>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group mb-3">
+                            <select class="form-control selcls" id="cheap_location">
+                                <option value="BLL">Billund</option>
+                                <option value="FMM">Memmingen</option>
+                                <option value="PSA">Pisa</option>
+                                <option value="PSR">Pescara</option>
+                                <option value="SOF">Sofia</option>
+
+                            </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="budget" placeholder="Butce (i.e: 15)" aria-label="budget">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="budget" placeholder="Butce (i.e: 15)"
+                                aria-label="budget">
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="input-group mb-3">
-                        <input class="form-control" placeholder="Baslangic Gunu" type="text" id="startDate">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group mb-3">
+                            <input class="form-control" placeholder="Baslangic Gunu" type="text" id="startDate">
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="input-group mb-3">
-                        <input class="form-control" placeholder="Bitis Gunu" type="text" id="endDate">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group mb-3">
+                            <input class="form-control" placeholder="Bitis Gunu" type="text" id="endDate">
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>
 
 
 
@@ -73,7 +77,8 @@
 
             <div class="row g-5">
                 <div class="col-md">
-                    <table id="info_table" class="table">
+                    <h5 id="error_message"></h5>
+                    <table id="info_table" class="table" style="visibility:hidden;">
                         <thead>
                             <tr>
                                 <th scope="col">Arrival Country</th>
