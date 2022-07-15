@@ -21,9 +21,6 @@ async function doGetRequest() {
         var row = table.insertRow();
 
         var cell = row.insertCell();
-        cell.innerHTML = i + 1
-
-        var cell = row.insertCell();
         cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
 
         var cell = row.insertCell();
