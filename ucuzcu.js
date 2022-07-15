@@ -63,3 +63,27 @@ function increaseDay() {
     document.getElementById('startDate').value = dateStringNewStartDate
     document.getElementById('endDate').value = dateStringNewEndDate
 }
+
+function increaseWeek() {
+    var newStartDate = new Date(document.getElementById("startDate").value);
+    var newEndDate = new Date(document.getElementById("endDate").value);
+    
+    newStartDate.setDate(newStartDate.getDate() + 1);
+    newEndDate.setDate(newEndDate.getDate() + 7);
+    
+    var ys = newStartDate.getFullYear(),
+        ms = newStartDate.getMonth() + 1, // january is month 0 in javascript
+        ds = newStartDate.getDate();
+    
+    var ye = newEndDate.getFullYear(),
+        me = newEndDate.getMonth() + 1, // january is month 0 in javascript
+        de = newEndDate.getDate();
+    var pad = function (val) { var str = val.toString(); return (str.length < 2) ? "0" + str : str };
+    dateStringNewStartDate = [ys, pad(ms), pad(ds)].join("-");
+
+    var padend = function (val) { var str = val.toString(); return (str.length < 2) ? "0" + str : str };
+    dateStringNewEndDate = [ye, padend(me), padend(de)].join("-");
+
+    document.getElementById('startDate').value = dateStringNewStartDate
+    document.getElementById('endDate').value = dateStringNewEndDate
+}
