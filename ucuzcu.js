@@ -19,7 +19,7 @@ async function doGetRequest() {
     console.log(data.total)
     const table = document.querySelector("table");
     if (data.total > 1) {
-        document.getElementById("error_message").innerHTML = 'Hadi iyi yolculuklar..';
+        document.getElementById("error_message").innerHTML = 'Hadi iyi yolculuklar &#128640 &#9969;';
         document.getElementById("info_table").style.visibility = "visible";
         for (let i = 0; i < 31; i++) {
             var row = table.insertRow();
@@ -44,7 +44,11 @@ async function doGetRequest() {
         }
     }
     else {
-        document.getElementById("error_message").innerHTML = "Bu butce ile evinde otur aq.";
+        let budget = document.getElementById("budget").value;
+        let startDate = document.getElementById("startDate").value
+        let endDate = document.getElementById("endDate").value
+        let answer = `${startDate} / ${endDate} tarihleri arasinda ${budget} Euro butce ile evde otur.. &#128078`
+        document.getElementById("error_message").innerHTML = answer;
         document.getElementById("info_table").style.visibility = "hidden";
     }
 }
@@ -77,7 +81,7 @@ function increaseWeek() {
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
 
-    newStartDate.setDate(newStartDate.getDate() + 7);
+    newStartDate.setDate(newStartDate.getDate() + 1);
     newEndDate.setDate(newEndDate.getDate() + 7);
 
     var ys = newStartDate.getFullYear(),
