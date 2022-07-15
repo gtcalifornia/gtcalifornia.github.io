@@ -68,7 +68,7 @@ function increaseWeek() {
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
     
-    newStartDate.setDate(newStartDate.getDate() + 1);
+    newStartDate.setDate(newStartDate.getDate() + 7);
     newEndDate.setDate(newEndDate.getDate() + 7);
     
     var ys = newStartDate.getFullYear(),
