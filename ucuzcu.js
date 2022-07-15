@@ -1,8 +1,4 @@
-// TODO: dropdown airport choice
 // TODO: radiobutton : one way or return ticket
-
-// Constant URL value for RyanAir API
-
 async function doGetRequest() {
 
     var tableRef = document.getElementById('info_table');
