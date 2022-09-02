@@ -20,6 +20,10 @@ const options = [
         "value": null
     },
     {
+        "text": "Banja Luka",
+        "value": "BNX"
+    },
+    {
         "text": "Barcelona",
         "value": "BCN"
     },
@@ -34,6 +38,10 @@ const options = [
     {
         "text": "Berlin Brandenburg",
         "value": "BER"
+    },
+    {
+        "text": "Billund",
+        "value": "BLL"
     },
     {
         "text": "Bologna",
@@ -124,6 +132,10 @@ const options = [
         "value": "IBZ"
     },
     {
+        "text": "Katowice",
+        "value": "KTW"
+    },
+    {
         "text": "Kefalonia",
         "value": null
     },
@@ -140,12 +152,16 @@ const options = [
         "value": "CPH"
     },
     {
-        "text": "Krakau",
+        "text": "Krakaw",
         "value": "KRK"
     },
     {
         "text": "Köln",
         "value": "CGN"
+    },
+    {
+        "text": "Lamezia",
+        "value": "SUF"
     },
     {
         "text": "Lissabon",
@@ -196,6 +212,10 @@ const options = [
         "value": "FMM"
     },
     {
+        "text": "Milan Bergamo",
+        "value": "BGY"
+    },
+    {
         "text": "Neapel",
         "value": "JKR"
     },
@@ -218,6 +238,10 @@ const options = [
     {
         "text": "Palermo",
         "value": "PMO"
+    },
+    {
+        "text": "Palma de Mallorca",
+        "value": "PMI"
     },
     {
         "text": "Paphos",
@@ -280,6 +304,10 @@ const options = [
         "value": "SXB"
     },
     {
+        "text": "Stockholm",
+        "value": "VST"
+    },
+    {
         "text": "Tallinn",
         "value": "TLL"
     },
@@ -312,10 +340,11 @@ const options = [
 const selectBox = document.querySelector('select');
 
 for (const o of options) {
-  const {
-    text,
-    value,
-    selected
-  } = o
-  selectBox.options.add(new Option(text, value, selected, selected));
+    const {
+        text,
+        value,
+        selected
+    } = o
+    selectBox.options.add(new Option(text, value, selected, selected));
 }
+

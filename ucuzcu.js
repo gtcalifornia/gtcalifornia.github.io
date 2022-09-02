@@ -1,4 +1,12 @@
 // TODO: radiobutton : one way or return ticket
+
+const cheapTickets = []
+
+
+// async function doRyanRequest() {
+
+// }
+
 async function doGetRequest() {
 
     var tableRef = document.getElementById('info_table');
@@ -12,12 +20,16 @@ async function doGetRequest() {
     let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
     let res = await axios.get(`${RYAN_AIR_API_URL}`);
     let data = res.data;
-    console.log(data.total)
+
+    
     const table = document.querySelector("table");
     if (data.total > 1) {
         document.getElementById("error_message").innerHTML = 'Hadi iyi yolculuklar &#128640 &#9969;';
         document.getElementById("info_table").style.visibility = "visible";
-        for (let i = 0; i < 31; i++) {
+        for (let i = 0; i < 30; i++) {
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+
             var row = table.insertRow();
 
             var cell = row.insertCell();
@@ -30,6 +42,7 @@ async function doGetRequest() {
             cell.innerHTML = data.fares[i].outbound.flightNumber
 
             var cell = row.insertCell();
+            console.log(typeof data.fares[i].outbound.price.value)
             cell.innerHTML = data.fares[i].outbound.price.value
 
             var cell = row.insertCell();
@@ -37,6 +50,18 @@ async function doGetRequest() {
 
             var cell = row.insertCell();
             cell.innerHTML = data.fares[i].outbound.departureDate
+            
+            var d = new Date(data.fares[i].outbound.departureDate);
+            var dayName = days[d.getDay()];
+
+            var cell = row.insertCell();
+            cell.innerHTML = dayName
+
+            var cell = row.insertCell();
+            var departureDate = data.fares[i].outbound.departureDate
+            console.log('buradayiz be',data.fares[i])
+            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0,10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
+            cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
         }
     }
     else {
@@ -96,3 +121,9 @@ function increaseWeek() {
     document.getElementById('startDate').value = dateStringNewStartDate
     document.getElementById('endDate').value = dateStringNewEndDate
 }
+
+
+// https://www.ryanair.com/gb/en/trip/flights/select?adults=1&teens=0&children=0&infants=0&dateOut=2022-08-27&tpStartDate=2022-08-27T23:20:00&originIata=ALC&tpOriginIata=ALC&destinationIata=AGA&tpDestinationIata=AGA
+
+
+// https://www.ryanair.com/gb/en/trip/flights/select?adults=1&teens=0&children=0&infants=0&dateOut=&dateIn=&isConnectedFlight=false&originIata=ALC&destinationIata=AGA
