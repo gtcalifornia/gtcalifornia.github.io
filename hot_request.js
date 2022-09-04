@@ -338,11 +338,11 @@ const options = [
 ]
 
 async function doHotRequest() {
-    console.log('hayattayiz')
-    for (const airport of options ) {
+    for (const airport of options) {
         const {
             text, value
         } = airport
+        console.log(airport.value)
         let fromWhere = airport.value;
         var today = new Date();
         var nextSevenDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
@@ -350,56 +350,60 @@ async function doHotRequest() {
 
         let startDate = today.toISOString().split('T')[0];
         let endDate = nextSevenDay.toISOString().split('T')[0];
-        let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=20`;
+        let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=25`;
         let res = await axios.get(`${RYAN_AIR_API_URL}`);
         let data = res.data;
-        console.log(data)    
         const table = document.querySelector("table");
-        if (data.total > 1) {
-            document.getElementById("so_hot_tickets_table").style.visibility = "visible";
-            for (let i = 0; i < 30; i++) {
-                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const hot_tickets = []; 
 
-
-                var row = table.insertRow();
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.arrivalAirport.name
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.flightNumber
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.price.value
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.price.currencyCode
-
-                var cell = row.insertCell();
-                cell.innerHTML = data.fares[i].outbound.departureDate
-                
-                var d = new Date(data.fares[i].outbound.departureDate);
-                var dayName = days[d.getDay()];
-
-                var cell = row.insertCell();
-                cell.innerHTML = dayName
-
-                var cell = row.insertCell();
-                var departureDate = data.fares[i].outbound.departureDate
-                let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0,10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
-                cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
-                        
-            }
+        if (data.total >= 1) {
+            hot_tickets.push(data)
         }
-        else {
-            document.getElementById("error_message").innerHTML = 'No ticket under 20$ today..';
+        document.getElementById("so_hot_tickets_table").style.visibility = "visible";
+        for (let i = 0; i < hot_tickets.length; i++) {
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-            document.getElementById("so_hot_tickets_table").style.visibility = "hidden";
+            var row = table.insertRow();
+            var cell = row.insertCell();
+
+            cell.innerHTML = data.fares[i].outbound.departureAirport.countryName
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.departureAirport.name
+
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.arrivalAirport.name
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.flightNumber
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.price.value
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.price.currencyCode
+
+            var cell = row.insertCell();
+            cell.innerHTML = data.fares[i].outbound.departureDate
+
+            var d = new Date(data.fares[i].outbound.departureDate);
+            var dayName = days[d.getDay()];
+
+            var cell = row.insertCell();
+            cell.innerHTML = dayName
+
+            var cell = row.insertCell();
+            var departureDate = data.fares[i].outbound.departureDate
+            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0, 10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
+            cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
+
         }
 
-        }
 
     }
+
+}
