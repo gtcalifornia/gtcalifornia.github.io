@@ -112,6 +112,10 @@ const options = [
         "value": "FUE"
     },
     {
+        "text": "Gdansk",
+        "value": "GDN"
+    },
+    {
         "text": "Girona",
         "value": null
     },
