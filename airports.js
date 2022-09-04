@@ -13,11 +13,11 @@ const options = [
     },
     {
         "text": "Athen",
-        "value": null
+        "value": "ATH"
     },
     {
         "text": "Azoren",
-        "value": null
+        "value": "S4"
     },
     {
         "text": "Banja Luka",
@@ -72,8 +72,12 @@ const options = [
         "value": "CGN"
     },
     {
+        "text": "Dalaman",
+        "value": "DLM"
+    },
+    {
         "text": "Danzig",
-        "value": null
+        "value": "GDN"
     },
     {
         "text": "Dortmund",
@@ -117,7 +121,7 @@ const options = [
     },
     {
         "text": "Girona",
-        "value": null
+        "value": "GRN"
     },
     {
         "text": "Glasgow",
@@ -125,7 +129,7 @@ const options = [
     },
     {
         "text": "Gran Canaria",
-        "value": null
+        "value": "LPA"
     },
     {
         "text": "Hamburg",
@@ -141,7 +145,7 @@ const options = [
     },
     {
         "text": "Kefalonia",
-        "value": null
+        "value": "EFL"
     },
     {
         "text": "Kerry",
