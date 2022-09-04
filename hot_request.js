@@ -345,9 +345,11 @@ async function doHotRequest() {
         } = airport
         let fromWhere = airport.value;
         var today = new Date();
+        var nextSevenDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+
 
         let startDate = today.toISOString().split('T')[0];
-        let endDate = "2022-09-05";
+        let endDate = nextSevenDay.toISOString().split('T')[0];
         let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=20`;
         let res = await axios.get(`${RYAN_AIR_API_URL}`);
         let data = res.data;
