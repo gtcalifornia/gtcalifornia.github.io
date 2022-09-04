@@ -400,10 +400,6 @@ async function doHotRequest() {
             var departureDate = data.fares[i].outbound.departureDate
             let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0, 10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
             cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
-
         }
-
-
     }
-
 }
