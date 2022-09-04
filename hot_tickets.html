@@ -37,49 +37,24 @@
 
         <main>
             <b>
-                <h2>Cheap RyanAir Tickets &#128640 </h2>
+                <h2>Hot Tickets Under 20$ Today &#128640 </h2>
             </b>
             <hr>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="input-group mb-3">
-                            <select class="form-control selcls" id="cheap_location">
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="budget" placeholder="Budget (i.e: 15)"
-                                aria-label="budget">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="input-group mb-3">
-                            <input class="form-control" placeholder="Baslangic Gunu" type="text" id="startDate">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="input-group mb-3">
-                            <input class="form-control" placeholder="Bitis Gunu" type="text" id="endDate">
-                        </div>
-                    </div>
+
+                      
                 </div>
             </div>
 
-            <div class="mb-5">
-              <a href="hot_tickets.html"><button class="btn btn-dark btn px-2" onclick="increaseDay()">Hot Tickets &#128293; </button></a>
-              <button class="btn btn-primary btn px-2" onclick="increaseDay()">Next Day</button>
-              <button class="btn btn-primary btn px-2" onclick="increaseWeek()">Next 7 Day</button>
-                <button class="btn btn-success btn px-2" onclick="doGetRequest()">Search</button>
-            </div>
+
 
 
             <div class="row g-5">
                 <div class="col-md table-responsive">
                     <h5 id="error_message"></h5>
-                    <table id="info_table" class="table table-striped display" style="visibility:hidden;">
+                    <table id="so_hot_tickets_table" class="table table-striped display" style="visibility:hidden;">
                         <thead>
                             <tr>
                                 <th onclick="sortTable(0)" scope="col">Arrival Country &#11015; &#11014; <i class="fas fa-sort"></i></th>
@@ -101,27 +76,16 @@
         </main>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="freebie.js"></script>
-    <script src="airports.js"></script>
+    <script src="hot_request.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            var today = new Date();
-            var previousDay = today.setDate(today.getDate() + 1)
-            $("#endDate").datepicker({ dateFormat: "yy-mm-dd" },);
-            $("#startDate").datepicker({ dateFormat: "yy-mm-dd" });
-            $('#endDate').datepicker('setDate', today);
-            $('#startDate').datepicker('setDate', previousDay);
 
-        });
-    </script>
     
     <script>
     function sortTable(n) {
       var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-      table = document.getElementById("info_table");
+      table = document.getElementById("so_hot_tickets_table");
       switching = true;
       //Set the sorting direction to ascending:
       dir = "asc"; 
@@ -177,7 +141,7 @@
     <script>
         function sortIntegers() {
           var table, rows, switching, i, x, y, shouldSwitch;
-          table = document.getElementById("info_table");
+          table = document.getElementById("so_hot_tickets_table");
           switching = true;
           /*Make a loop that will continue until
           no switching has been done:*/

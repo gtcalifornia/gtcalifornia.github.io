@@ -6,6 +6,14 @@ const cheapTickets = []
 // async function doRyanRequest() {
 
 // }
+function convert_to_float(a) {
+         
+    // Using parseFloat() method
+    var floatValue = parseFloat(a);
+     
+    // Return float value
+    return floatValue;
+}
 
 async function doGetRequest() {
 
@@ -18,6 +26,7 @@ async function doGetRequest() {
     let startDate = document.getElementById("startDate").value
     let endDate = document.getElementById("endDate").value
     let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
+    console.log(RYAN_AIR_API_URL)
     let res = await axios.get(`${RYAN_AIR_API_URL}`);
     let data = res.data;
 
@@ -59,9 +68,9 @@ async function doGetRequest() {
 
             var cell = row.insertCell();
             var departureDate = data.fares[i].outbound.departureDate
-            console.log('buradayiz be',data.fares[i])
             let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0,10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
             cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
+                    
         }
     }
     else {
@@ -72,6 +81,7 @@ async function doGetRequest() {
         document.getElementById("error_message").innerHTML = answer;
         document.getElementById("info_table").style.visibility = "hidden";
     }
+    return RYAN_AIR_API_URL
 }
 
 function increaseDay() {
