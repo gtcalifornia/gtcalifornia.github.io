@@ -53,4 +53,23 @@
     column-width: 50px;
   }
 
-  
+body, .website-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* Styles for website counter container */
+.website-counter {
+  background-color: #000000;
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-top: 10px;
+}
+
