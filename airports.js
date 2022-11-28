@@ -172,6 +172,10 @@ const options = [
         "value": "SUF"
     },
     {
+        "text": "Lanzarote",
+        "value": "ACE"
+    },
+    {
         "text": "Lissabon",
         "value": "LIS"
     },
