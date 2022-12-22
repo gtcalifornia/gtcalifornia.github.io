@@ -200,6 +200,10 @@ const options = [
         "value": "MAD"
     },
     {
+        "text":"Madeira",
+        "value":"FNC"
+    },
+    {
         "text": "Malaga",
         "value": "AGP"
     },
@@ -274,6 +278,10 @@ const options = [
     {
         "text": "Pisa",
         "value": "PSA"
+    },
+    {
+        "text": "Ponta Delgada",
+        "value": "PDL"
     },
     {
         "text": "Porto",
