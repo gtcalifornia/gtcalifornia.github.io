@@ -4,16 +4,11 @@ const cheapTickets = []
 
 
 // async function doRyanRequest() {
-
+    
 // }
-function convert_to_float(a) {
-         
-    // Using parseFloat() method
-    var floatValue = parseFloat(a);
-     
-    // Return float value
-    return floatValue;
-}
+function convertToFloat(a) {
+    return parseFloat(a);
+  }
 
 async function doGetRequest() {
 
