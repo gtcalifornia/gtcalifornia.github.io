@@ -121,64 +121,57 @@ async function doGetRequest() {
         }
       });
       
-    if (data.total > 1) {
-        welcomeMessage.style.fontSize = '12px';
-        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> The places you can go between ${startDate} - ${endDate}`;
-
-        console.log(welcomeMessage)
-        for (let i = 0; i < 30; i++) {
-            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+      if (data.total > 1) { // Check if there are search results
+        welcomeMessage.style.fontSize = '12px'; // Set font size for welcome message
+        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> The places you can go between ${startDate} - ${endDate}`; // Set text for welcome message
+    
+        console.log(welcomeMessage); // Log welcome message to console
+    
+        for (let i = 0; i < 30; i++) { // Loop through the first 30 search results
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; // Array of days of the week
+    
+            // Get flight information for current search result
             const destination = `${data.fares[i].outbound.arrivalAirport.countryName}, ${data.fares[i].outbound.arrivalAirport.name}`;
-            const flightName = `${data.fares[i].outbound.flightNumber}`
+            const flightName = `${data.fares[i].outbound.flightNumber}`;
             const price = `${data.fares[i].outbound.price.value} ${data.fares[i].outbound.price.currencyCode}`;
-            const dateTimeString = `${data.fares[i].outbound.departureDate}`
-
+            const dateTimeString = `${data.fares[i].outbound.departureDate}`;
+    
+            // Split date and time from dateTimeString
             let [date,time] = dateTimeString.split("T");
             const formattedDateTime = `${date} ${time}`;
+    
+            // Create HTML elements for search result
             const searchResultBox = document.createElement('div');
             searchResultBox.className = 'search_results_box';
-            
             const resultItem = document.createElement('div');
             resultItem.className = 'result-item';
-
-
             const resultContent = document.createElement('div');
             resultContent.className = 'result-content';
-            
             const resultTitle = document.createElement('h3');
             resultTitle.className = 'result-title';
             resultTitle.textContent = `${destination}`;
-
             const flightAndPriceTitle = document.createElement('h3');
             flightAndPriceTitle.className= 'result-description';
             flightAndPriceTitle.textContent = `${flightName} - ${price}`;
-
             const buyButton = document.createElement('button');
-            var departureDate = data.fares[i].outbound.departureDate
-            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0, 10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
+            var departureDate = data.fares[i].outbound.departureDate;
+            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0, 10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`;
             buyButton.className = 'buy-button';
             buyButton.textContent = 'BUY';
-            buyButton.innerHTML= `<a href="${BUY_URL}" style="text-decoration:none;">BUY</a>`
-
+            buyButton.innerHTML= `<a href="${BUY_URL}" style="text-decoration:none;">BUY</a>`;
             const resultDescription = document.createElement('h3');
             resultDescription.className = 'result-date';
             resultDescription.textContent = formattedDateTime;
-
-
             resultDescription.appendChild(buyButton);
-            
             resultContent.appendChild(resultTitle);
             resultContent.appendChild(flightAndPriceTitle);
-
             resultContent.appendChild(resultDescription);
-
             resultItem.appendChild(resultContent);
             searchResultsBox.appendChild(resultItem);
             searchResultsBox.appendChild(searchResultBox);
-
+    
+            // Check price of flight and assign background color to search result based on price range
             let priceValue = convertToFloat(data.fares[i].outbound.price.value);
-
             if (priceValue <= 25) {
                 const badgeIcon = document.createElement('span');
                 badgeIcon.className = 'badge-icon';
