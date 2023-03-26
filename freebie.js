@@ -1,32 +1,47 @@
 const cheapTickets = []
 
-
+/**
+ * Converts a string to a floating-point number.
+ * 
+ * @param {string} a - The string to convert.
+ * @returns {number} The converted floating-point number.
+ */
 function convertToFloat(a) {
     return parseFloat(a);
   }
-async function doGetRequest() {
-    let fromWhere = document.getElementById("cheap_location").value;
-    let budget = document.getElementById("budget").value;
-    let startDate = document.getElementById("startDate").value;
-    let endDate = document.getElementById("endDate").value;
-    let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
-    let res = await axios.get(`${RYAN_AIR_API_URL}`);
-    let data = res.data;
-    let fares = data.fares;
 
+// This is an async function that sends a GET request to the Ryanair API with the specified parameters and displays the search results on the page
+async function doGetRequest() {
+    // Get the values of the input fields on the page
+    const fromWhere = document.getElementById("cheap_location").value;
+    const budget = document.getElementById("budget").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    // Construct the API URL using the input values
+    const RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
+    
+    // Send the GET request to the API using Axios
+    const res = await axios.get(`${RYAN_AIR_API_URL}`);
+    const data = res.data;
+    const fares = data.fares;
+
+    // Make the sort buttons and search input visible
     document.getElementById("sort-button").style.visibility = "visible"
     document.getElementById("sort-button-by-price").style.visibility = "visible"
     document.getElementById("input-group").classList.toggle("d-none");
-
+    
+    // Change the search button color and label
     var searchButton = document.getElementById("search-button")
     searchButton.style.backgroundColor = "red";
     searchButton.innerHTML = "New Search";
 
+    // Clear any existing search results
     var welcomeMessage=  document.getElementById("error_message");
     var searchResultsBox = document.getElementById('search_results_box');
     searchResultsBox.innerHTML = ""; // clear existing search results
     
-   
+    // Sort the search results by price (ascending by default)
     fares.sort((a, b) => convertToFloat(a.outbound.price.value) - convertToFloat(b.outbound.price.value));
     const sortButton = document.getElementById("sort-button");
     const sortButtonByPrice = document.getElementById("sort-button-by-price");
@@ -35,12 +50,13 @@ async function doGetRequest() {
     // Sort by Country Name
     let sortOrder = 'asc';
 
+    // Add an event listener to the sort by country name button
     sortButton.addEventListener("click", function() {
     const searchResultsBox = document.getElementById('search_results_box');
     
     const resultItems = searchResultsBox.querySelectorAll('.result-item');
 
-    // convert the NodeList to an Array
+    // Convert the NodeList to an array so we can sort it
     const itemsArray = Array.from(resultItems);
 
     // sort the items by departure place
