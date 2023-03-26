@@ -20,47 +20,40 @@
 <body>
 
     <div class="col-lg-8 col-sm-12 mx-auto p-3 py-md-5">
-        <main>
             <b>
                 <h2>Hot Tickets Under 25 EUR This Week &#128640 </h2>
             </b>
             <hr>
             <div class="container">
                 <div class="row">
-
-
-                      
                 </div>
             </div>
-
             <div class="row g-5">
                 <div class="col-md table-responsive">
                     <h5 id="error_message"></h5>
                     <table id="so_hot_tickets_table" class="table table-striped display" style="visibility:hidden;">
                         <thead>
                             <tr>
-                              <th onclick="sortTable(0)" scope="col">Dep. Country &#11015;</th>
-                              <th onclick="sortTable(1)" scope="col">Dep. City &#11015; </th>
-                              <th onclick="sortTable(2)" scope="col">Arr. Country &#11015;</th>
-                              <th onclick="sortTable(3)" scope="col">Arr. City &#11015;</th>
+                              <th  scope="col">Dep. Country &#11015;</th>
+                              <th  scope="col">Dep. City &#11015; </th>
+                              <th  scope="col">Arr. Country &#11015;</th>
+                              <th  scope="col">Arr. City &#11015;</th>
                                 <th scope="col">Flight No</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Currency</th>
                                 <th  scope="col">Dep. Date</th>
-                                <th onclick="sortTable(4)" scope="col">Day &#11015;</th>
+                                <th  scope="col">Day &#11015;</th>
                                 <th scope="col">Buy</th>
                             </tr>
                         </thead>
                         <tbody>
-                           
                         </tbody>
                     </table>
                 </div>
             </div>
-        </main>
     </div>
     <div class="bottom-nav">
-      <a href="index.html" ><i class="fa fa-home"></i><span>Home</span></a>
+      <a href="index.html" ><i class="fa fa-home"></i><span>Search 🔍</span></a>
       <a href="hot_tickets.html" class="active"><i class="fa fa-search"></i><span>Hot Tickets &#128293;</span></a>
       <a href="#"><i class="fa fa-search"></i><span>Search</span></a>
 
@@ -71,6 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+    
     <script>
       doHotRequest()
     </script>
