@@ -5,17 +5,6 @@ function convertToFloat(a) {
     return parseFloat(a);
   }
 async function doGetRequest() {
-    console.log(document.getElementById('sort-button'))
-    document.getElementById("sort-button").style.visibility = "visible"
-
-    document.getElementById("input-group").classList.toggle("d-none");
-    var searchButton = document.getElementById("search-button")
-    searchButton.style.backgroundColor = "red";
-    searchButton.innerHTML = "New Search";
-    var welcomeMessage=  document.getElementById("error_message");
-    var searchResultsBox = document.getElementById('search_results_box');
-    searchResultsBox.innerHTML = ""; // clear existing search results
-    
     let fromWhere = document.getElementById("cheap_location").value;
     let budget = document.getElementById("budget").value;
     let startDate = document.getElementById("startDate").value;
@@ -24,41 +13,98 @@ async function doGetRequest() {
     let res = await axios.get(`${RYAN_AIR_API_URL}`);
     let data = res.data;
     let fares = data.fares;
+
+    document.getElementById("sort-button").style.visibility = "visible"
+    document.getElementById("sort-button-by-price").style.visibility = "visible"
+    document.getElementById("input-group").classList.toggle("d-none");
+
+    var searchButton = document.getElementById("search-button")
+    searchButton.style.backgroundColor = "red";
+    searchButton.innerHTML = "New Search";
+
+    var welcomeMessage=  document.getElementById("error_message");
+    var searchResultsBox = document.getElementById('search_results_box');
+    searchResultsBox.innerHTML = ""; // clear existing search results
+    
+   
     fares.sort((a, b) => convertToFloat(a.outbound.price.value) - convertToFloat(b.outbound.price.value));
     const sortButton = document.getElementById("sort-button");
-
+    const sortButtonByPrice = document.getElementById("sort-button-by-price");
+    let sortOrderPrice = "asc";
+    
+    // Sort by Country Name
     let sortOrder = 'asc';
 
-sortButton.addEventListener("click", function() {
-  const searchResultsBox = document.getElementById('search_results_box');
-  const resultItems = searchResultsBox.querySelectorAll('.result-item');
+    sortButton.addEventListener("click", function() {
+    const searchResultsBox = document.getElementById('search_results_box');
+    
+    const resultItems = searchResultsBox.querySelectorAll('.result-item');
 
-  // convert the NodeList to an Array
-  const itemsArray = Array.from(resultItems);
+    // convert the NodeList to an Array
+    const itemsArray = Array.from(resultItems);
 
-  // sort the items by departure place
-  itemsArray.sort(function(a, b) {
-    const aDeparture = a.querySelector('.result-title').textContent;
-    const bDeparture = b.querySelector('.result-title').textContent;
-    if (sortOrder === 'asc') {
-      return aDeparture.localeCompare(bDeparture);
-    } else {
-      return bDeparture.localeCompare(aDeparture);
-    }
-  });
+    // sort the items by departure place
+    itemsArray.sort(function(a, b) {
+        const aDeparture = a.querySelector('.result-title').textContent;
+        const bDeparture = b.querySelector('.result-title').textContent;
+        if (sortOrder === 'asc') {
+        return aDeparture.localeCompare(bDeparture);
+        } else {
+        return bDeparture.localeCompare(aDeparture);
+        }
+    });
 
-  // empty the search results box
-  searchResultsBox.innerHTML = "";
+    // empty the search results box
+    searchResultsBox.innerHTML = "";
 
-  // add the sorted items back to the search results box
-  itemsArray.forEach(function(item) {
-    searchResultsBox.appendChild(item);
-  });
+    // add the sorted items back to the search results box
+    itemsArray.forEach(function(item) {
+        searchResultsBox.appendChild(item);
+    });
 
-  // toggle the sort order
-  sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
-});
-
+    // toggle the sort order
+    sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    });
+    // Sort by country name is Done.
+    //-----------------------
+    sortButtonByPrice.addEventListener('click', function() {
+        const searchResultsBox = document.getElementById('search_results_box');
+        
+        const resultItems = searchResultsBox.querySelectorAll('.result-item');
+        
+        // convert the NodeList to an Array
+        const itemsArray = Array.from(resultItems);
+        
+        const sortDirection = this.dataset.sortDirection;
+        
+        // sort the items by price
+        itemsArray.sort(function(a, b) {
+          const aPrice = convertToFloat(a.querySelector('.result-description').textContent.split(' - ')[1]);
+          const bPrice = convertToFloat(b.querySelector('.result-description').textContent.split(' - ')[1]);
+          
+          if (sortDirection === 'asc') {
+            return aPrice - bPrice;
+          } else {
+            return bPrice - aPrice;
+          }
+        });
+        
+        // empty the search results box
+        searchResultsBox.innerHTML = "";
+        
+        // add the sorted items back to the search results box
+        itemsArray.forEach(function(item) {
+          searchResultsBox.appendChild(item);
+        });
+        
+        // toggle the sort direction
+        if (sortDirection === 'asc') {
+          sortButtonByPrice.dataset.sortDirection = 'desc';
+        } else {
+          sortButtonByPrice.dataset.sortDirection = 'asc';
+        }
+      });
+      
     if (data.total > 1) {
         welcomeMessage.style.fontSize = '12px';
         welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> The places you can go between ${startDate} - ${endDate}`;
