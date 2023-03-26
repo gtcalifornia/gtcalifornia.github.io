@@ -5,6 +5,8 @@ function convertToFloat(a) {
     return parseFloat(a);
   }
 async function doGetRequest() {
+    console.log(document.getElementById('sort-button'))
+    document.getElementById("sort-button").style.visibility = "visible"
 
     document.getElementById("input-group").classList.toggle("d-none");
     var searchButton = document.getElementById("search-button")
@@ -23,6 +25,39 @@ async function doGetRequest() {
     let data = res.data;
     let fares = data.fares;
     fares.sort((a, b) => convertToFloat(a.outbound.price.value) - convertToFloat(b.outbound.price.value));
+    const sortButton = document.getElementById("sort-button");
+
+    let sortOrder = 'asc';
+
+sortButton.addEventListener("click", function() {
+  const searchResultsBox = document.getElementById('search_results_box');
+  const resultItems = searchResultsBox.querySelectorAll('.result-item');
+
+  // convert the NodeList to an Array
+  const itemsArray = Array.from(resultItems);
+
+  // sort the items by departure place
+  itemsArray.sort(function(a, b) {
+    const aDeparture = a.querySelector('.result-title').textContent;
+    const bDeparture = b.querySelector('.result-title').textContent;
+    if (sortOrder === 'asc') {
+      return aDeparture.localeCompare(bDeparture);
+    } else {
+      return bDeparture.localeCompare(aDeparture);
+    }
+  });
+
+  // empty the search results box
+  searchResultsBox.innerHTML = "";
+
+  // add the sorted items back to the search results box
+  itemsArray.forEach(function(item) {
+    searchResultsBox.appendChild(item);
+  });
+
+  // toggle the sort order
+  sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+});
 
     if (data.total > 1) {
         welcomeMessage.style.fontSize = '12px';
