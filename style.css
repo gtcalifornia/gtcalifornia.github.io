@@ -1,7 +1,7 @@
 body {
   background-color: #ffffff;
   font-family: 'Montserrat', sans-serif;
-
+  margin:revert;
 }
 
 .bd-placeholder-img {
@@ -81,7 +81,7 @@ body {
     justify-content: center;
     text-decoration: none;
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.75rem;
     height: 100%;
     flex: 1;
     border-right: 2px solid white;
