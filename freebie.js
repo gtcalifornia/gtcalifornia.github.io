@@ -58,8 +58,11 @@ async function doGetRequest() {
             flightAndPriceTitle.textContent = `${flightName} - ${price}`;
 
             const buyButton = document.createElement('button');
+            var departureDate = data.fares[i].outbound.departureDate
+            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0, 10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
             buyButton.className = 'buy-button';
             buyButton.textContent = 'BUY';
+            buyButton.innerHTML= `<a href="${BUY_URL}" style="text-decoration:none;">BUY</a>`
 
             const resultDescription = document.createElement('h3');
             resultDescription.className = 'result-date';
@@ -100,6 +103,12 @@ async function doGetRequest() {
             }
 
     }
+    else {
+        welcomeMessage.style.fontSize = '12px';
+        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> There is no place that you can go between ${startDate} - ${endDate}`;
+
+
+    }
 
 }
 
@@ -112,7 +121,7 @@ function increaseDay() {
 
     var ys = newStartDate.getFullYear(),
         ms = newStartDate.getMonth() + 1, // january is month 0 in javascript
-        ds = newStartDate.getDate();
+        ds = newStartDate.getDate();    
 
     var ye = newEndDate.getFullYear(),
         me = newEndDate.getMonth() + 1, // january is month 0 in javascript
