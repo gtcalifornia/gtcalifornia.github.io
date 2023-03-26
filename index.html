@@ -57,9 +57,11 @@
             <div class="mb-3">
               <button class="btn btn-primary btn-sm btn px-2" id="nextday" onclick="increaseDay()">Next Day</button>
               <button class="btn btn-primary btn-sm btn px-2" id="newxtweek" onclick="increaseWeek()">Next 7 Day</button>
-                <button class="btn btn-success btn-sm btn px-2" id="search-button" onclick="doGetRequest()">Search</button>
+              <button class="btn btn-success btn-sm btn px-2" id="search-button" onclick="doGetRequest()">Search</button>
+
             </div>
             <h5 id="error_message">Let's go your dream place!</h5>
+            <button id="sort-button" class="btn btn-outline-danger btn-sort mb-3" style="visibility: hidden;">Sort Country</button>
 
             <div class="search_results_box" id="search_results_box">
 
@@ -76,9 +78,6 @@
     
         </div>
     </div>
-
-
-    
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="freebie.js"></script>
