@@ -1,82 +1,106 @@
-// TODO: radiobutton : one way or return ticket
-
 const cheapTickets = []
 
 
-// async function doRyanRequest() {
-    
-// }
 function convertToFloat(a) {
     return parseFloat(a);
   }
-
 async function doGetRequest() {
 
-    var tableRef = document.getElementById('info_table');
-    while (tableRef.rows.length > 1) {
-        tableRef.deleteRow(1);
-    }
+    document.getElementById("input-group").classList.toggle("d-none");
+    var searchButton = document.getElementById("search-button")
+    searchButton.style.backgroundColor = "red";
+    searchButton.innerHTML = "New Search";
+    var welcomeMessage=  document.getElementById("error_message");
+    var searchResultsBox = document.getElementById('search_results_box');
+    searchResultsBox.innerHTML = ""; // clear existing search results
+    
     let fromWhere = document.getElementById("cheap_location").value;
     let budget = document.getElementById("budget").value;
-    let startDate = document.getElementById("startDate").value
-    let endDate = document.getElementById("endDate").value
+    let startDate = document.getElementById("startDate").value;
+    let endDate = document.getElementById("endDate").value;
     let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=${budget}`;
-    console.log(RYAN_AIR_API_URL)
     let res = await axios.get(`${RYAN_AIR_API_URL}`);
     let data = res.data;
+    let fares = data.fares;
+    fares.sort((a, b) => convertToFloat(a.outbound.price.value) - convertToFloat(b.outbound.price.value));
 
-    
-    const table = document.querySelector("table");
     if (data.total > 1) {
-        document.getElementById("error_message").innerHTML = 'Hadi iyi yolculuklar &#128640 &#9969;';
-        document.getElementById("info_table").style.visibility = "visible";
+        welcomeMessage.style.fontSize = '12px';
+        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> The places you can go between ${startDate} - ${endDate}`;
+
+        console.log(welcomeMessage)
         for (let i = 0; i < 30; i++) {
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+            const destination = `${data.fares[i].outbound.arrivalAirport.countryName}, ${data.fares[i].outbound.arrivalAirport.name}`;
+            const flightName = `${data.fares[i].outbound.flightNumber}`
+            const price = `${data.fares[i].outbound.price.value} ${data.fares[i].outbound.price.currencyCode}`;
+            const dateTimeString = `${data.fares[i].outbound.departureDate}`
 
-            var row = table.insertRow();
-
-            var cell = row.insertCell();
-            cell.innerHTML = data.fares[i].outbound.arrivalAirport.countryName
-
-            var cell = row.insertCell();
-            cell.innerHTML = data.fares[i].outbound.arrivalAirport.name
-
-            var cell = row.insertCell();
-            cell.innerHTML = data.fares[i].outbound.flightNumber
-
-            var cell = row.insertCell();
-            console.log(typeof data.fares[i].outbound.price.value)
-            cell.innerHTML = data.fares[i].outbound.price.value
-
-            var cell = row.insertCell();
-            cell.innerHTML = data.fares[i].outbound.price.currencyCode
-
-            var cell = row.insertCell();
-            cell.innerHTML = data.fares[i].outbound.departureDate
+            let [date,time] = dateTimeString.split("T");
+            const formattedDateTime = `${date} ${time}`;
+            const searchResultBox = document.createElement('div');
+            searchResultBox.className = 'search_results_box';
             
-            var d = new Date(data.fares[i].outbound.departureDate);
-            var dayName = days[d.getDay()];
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
 
-            var cell = row.insertCell();
-            cell.innerHTML = dayName
 
-            var cell = row.insertCell();
-            var departureDate = data.fares[i].outbound.departureDate
-            let BUY_URL = `https://www.ryanair.com/gb/en/trip/flights/select?adults=1&dateOut=${departureDate.slice(0,10)}&originIata=${data.fares[i].outbound.departureAirport.iataCode}&destinationIata=${data.fares[i].outbound.arrivalAirport.iataCode}`
-            cell.innerHTML = `<a href="${BUY_URL}" class="btn btn-outline-success">BUY</a>`
-                    
-        }
+            const resultContent = document.createElement('div');
+            resultContent.className = 'result-content';
+            
+            const resultTitle = document.createElement('h3');
+            resultTitle.className = 'result-title';
+            resultTitle.textContent = `${destination}`;
+
+            const flightAndPriceTitle = document.createElement('h3');
+            flightAndPriceTitle.className= 'result-description';
+            flightAndPriceTitle.textContent = `${flightName} - ${price}`;
+
+            const buyButton = document.createElement('button');
+            buyButton.className = 'buy-button';
+            buyButton.textContent = 'BUY';
+
+            const resultDescription = document.createElement('h3');
+            resultDescription.className = 'result-date';
+            resultDescription.textContent = formattedDateTime;
+
+
+            resultDescription.appendChild(buyButton);
+            
+            resultContent.appendChild(resultTitle);
+            resultContent.appendChild(flightAndPriceTitle);
+
+            resultContent.appendChild(resultDescription);
+
+            resultItem.appendChild(resultContent);
+            searchResultsBox.appendChild(resultItem);
+            searchResultsBox.appendChild(searchResultBox);
+
+            let priceValue = convertToFloat(data.fares[i].outbound.price.value);
+
+            if (priceValue <= 25) {
+                const badgeIcon = document.createElement('span');
+                badgeIcon.className = 'badge-icon';
+                badgeIcon.textContent = '🏆 Good Deal';
+                resultItem.style.backgroundColor = "#03C988";
+                resultItem.appendChild(badgeIcon);
+            } 
+            else if (priceValue < 50) {
+                resultItem.style.backgroundColor = "#03C988";
+            } else if (priceValue >= 50 && priceValue < 100) {
+                resultItem.style.backgroundColor = '#2F58CD';
+            } else if (priceValue >= 100 && priceValue < 150){
+                resultItem.style.backgroundColor = '#3A1078';
+            }
+            else {
+                resultItem.style.backgroundColor = '#FF0303';
+
+            }
+            }
+
     }
-    else {
-        let budget = document.getElementById("budget").value;
-        let startDate = document.getElementById("startDate").value
-        let endDate = document.getElementById("endDate").value
-        let answer = `${startDate} / ${endDate} tarihleri arasinda ${budget} Euro butce ile evde otur.. &#128078`
-        document.getElementById("error_message").innerHTML = answer;
-        document.getElementById("info_table").style.visibility = "hidden";
-    }
-    return RYAN_AIR_API_URL
+
 }
 
 function increaseDay() {
@@ -126,9 +150,3 @@ function increaseWeek() {
     document.getElementById('startDate').value = dateStringNewStartDate
     document.getElementById('endDate').value = dateStringNewEndDate
 }
-
-
-// https://www.ryanair.com/gb/en/trip/flights/select?adults=1&teens=0&children=0&infants=0&dateOut=2022-08-27&tpStartDate=2022-08-27T23:20:00&originIata=ALC&tpOriginIata=ALC&destinationIata=AGA&tpDestinationIata=AGA
-
-
-// https://www.ryanair.com/gb/en/trip/flights/select?adults=1&teens=0&children=0&infants=0&dateOut=&dateIn=&isConnectedFlight=false&originIata=ALC&destinationIata=AGA
