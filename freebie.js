@@ -13,7 +13,6 @@ function convertToFloat(a) {
 
 // This is an async function that sends a GET request to the Ryanair API with the specified parameters and displays the search results on the page
 async function doGetRequest() {
-    // Check that there is internet connection.
     if (!navigator.onLine) {
         const errorMessage = document.getElementById("error_message");
         errorMessage.innerHTML = "You are not connected to the internet!";
@@ -21,6 +20,9 @@ async function doGetRequest() {
         errorMessage.style.color = 'red';
         return;
     }
+    // Display a loading spinner or bar
+    const loadingSpinner = document.getElementById("loading-spinner");
+    loadingSpinner.style.display = "block";
 
     // Get the values of the input fields on the page
     const fromWhere = document.getElementById("cheap_location").value;
@@ -35,6 +37,11 @@ async function doGetRequest() {
     const res = await axios.get(`${RYAN_AIR_API_URL}`);
     const data = res.data;
     const fares = data.fares;
+
+    // Hide the loading spinner or bar after a delay
+    setTimeout(() => {
+        loadingSpinner.style.display = "none";
+      }, 500);
 
     // Make the sort buttons and search input visible
     document.getElementById("sort-button").style.visibility = "visible"
