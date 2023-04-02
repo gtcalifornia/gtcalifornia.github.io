@@ -16,12 +16,12 @@ This program uses the Axios library to send HTTP requests to the Ryanair API. Yo
 npm install axios
 ```
 
-How it works
+### How it works
 The program uses an async function called doGetRequest() to send a GET request to the Ryanair API with the user's search parameters. The API returns a list of one-way fares that match the criteria. The program then sorts the search results by price (ascending by default) and displays them on the page.
 
 The user can sort the search results by departure location or price by clicking the corresponding button. The program uses JavaScript's sort() method to sort the search results by the specified criteria.
 
 The program uses the convertToFloat() function to convert the price strings returned by the API to floating-point numbers so they can be sorted correctly.
 
-License
+### License
 This code is released under the MIT License.
