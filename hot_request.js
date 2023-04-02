@@ -1,3 +1,4 @@
+
 const options = [
     {
         "text": "Alicante",
@@ -343,6 +344,17 @@ async function doHotRequest() {
             text, value
         } = airport
         console.log(airport.value)
+        if (!navigator.onLine) {
+            const errorMessage = document.getElementById("error_message");
+            errorMessage.innerHTML = "You are not connected to the internet!";
+            errorMessage.style.fontSize = '16px';
+            errorMessage.style.color = 'red';
+            return;
+        }
+        // Display a loading spinner or bar
+        const loadingSpinner = document.getElementById("loading-spinner");
+        loadingSpinner.style.display = "block";
+
         let fromWhere = airport.value;
         var today = new Date();
         var nextSevenDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
@@ -353,6 +365,8 @@ async function doHotRequest() {
         let RYAN_AIR_API_URL = `https://services-api.ryanair.com/farfnd/3/oneWayFares?&departureAirportIataCode=${fromWhere}&language=en&limit=30&market=en-gb&offset=0&outboundDepartureDateFrom=${startDate}&outboundDepartureDateTo=${endDate}&priceValueTo=25`;
         let res = await axios.get(`${RYAN_AIR_API_URL}`);
         let data = res.data;
+        loadingSpinner.style.display = "none";
+
         const table = document.querySelector("table");
         const hot_tickets = []; 
 
