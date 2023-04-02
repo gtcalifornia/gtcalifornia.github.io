@@ -13,7 +13,7 @@ Dependencies
 This program uses the Axios library to send HTTP requests to the Ryanair API. You must have Axios installed to run the program. If you do not have Axios installed, you can install it using the following command:
 
 Copy code
-npm install axios
+```npm install axios```
 How it works
 The program uses an async function called doGetRequest() to send a GET request to the Ryanair API with the user's search parameters. The API returns a list of one-way fares that match the criteria. The program then sorts the search results by price (ascending by default) and displays them on the page.
 
