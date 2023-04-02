@@ -1,3 +1,4 @@
+
 const cheapTickets = []
 
 /**
@@ -12,6 +13,15 @@ function convertToFloat(a) {
 
 // This is an async function that sends a GET request to the Ryanair API with the specified parameters and displays the search results on the page
 async function doGetRequest() {
+    // Check that there is internet connection.
+    if (!navigator.onLine) {
+        const errorMessage = document.getElementById("error_message");
+        errorMessage.innerHTML = "You are not connected to the internet!";
+        errorMessage.style.fontSize = '16px';
+        errorMessage.style.color = 'red';
+        return;
+    }
+
     // Get the values of the input fields on the page
     const fromWhere = document.getElementById("cheap_location").value;
     const budget = document.getElementById("budget").value;
