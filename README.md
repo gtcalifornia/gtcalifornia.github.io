@@ -1,6 +1,6 @@
 ## Cheap Ryan Air Tickets Finder 
 ### Cheap Ryan Air tickets to anywhere from destination according to your budget.
-#### https://flycheaper.github.io/
+#### https://gtcalifornia.github.io/
 
 This repository contains a JavaScript program that searches for cheap flights on Ryanair airlines. The program sends a GET request to the Ryanair API with user-specified search parameters and returns a list of one-way fares that match the criteria.
 
