@@ -215,16 +215,11 @@ async function doGetRequest() {
       sortByPrice()
       });
 
-    //-----------------------------------------TODO: SORT BY DATE--------------------------
+    //-----------------------------------------SORT BY DATE--------------------------
 
     sortButtonByDate.addEventListener('click', function() {
       sortByDate()
       });
-
-
-
-
-
 
       if (data.total > 1) { // Check if there are search results
         welcomeMessage.style.fontSize = '12px'; // Set font size for welcome message
