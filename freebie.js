@@ -1,3 +1,6 @@
+let sortOrderByPrice = 'asc';
+let sortOrder = 'asc';
+let sortOrderByDate = 'asc';
 const cheapTickets = [];
 const GOOD_DEAL_PRICE_THRESHOLD = 25;
 const MODERATE_PRICE_THRESHOLD = 50;
@@ -94,7 +97,6 @@ function sortResultsByCountryName(sortOrder) {
 /**
 Sorts the search results by price in ascending or descending order.
 */
-let sortOrderByPrice = 'asc';
 function sortByPrice() {
   const searchResultsBox = document.getElementById('search_results_box');
   const resultItems = searchResultsBox.querySelectorAll('.result-item');
@@ -126,6 +128,31 @@ function sortByPrice() {
   sortOrderByPrice = sortOrderByPrice === 'asc' ? 'desc' : 'asc';
 }
 
+function sortByDate() {
+  console.log('Sort Date:' , sortOrderByDate)
+  const searchResultsBox = document.getElementById('search_results_box');
+  const resultItems = searchResultsBox.querySelectorAll('.result-item');
+  
+  // Convert the NodeList to an array so we can sort it
+  const itemsArray = Array.from(resultItems);
+  // Sort the items by date
+  itemsArray.sort(function(a, b) {
+    const aDate = new Date(a.querySelector('.result-date').textContent.split(' ')[0]);
+    const bDate = new Date(b.querySelector('.result-date').textContent.split(' ')[0]);
+    const result = aDate - bDate;
+    return sortOrderByDate === 'asc' ? result : -result;
+
+  });
+  // Empty the search results box
+  searchResultsBox.innerHTML = "";
+  
+  // Add the sorted items back to the search results box
+  itemsArray.forEach(function(item) {
+    searchResultsBox.appendChild(item);
+  });
+  // Toggle the sort order
+  sortOrderByDate = sortOrderByDate === 'asc' ? 'desc' : 'asc';
+}
 
 
 // This is an async function that sends a GET request to the Ryanair API with the specified parameters and displays the search results on the page
@@ -170,6 +197,7 @@ async function doGetRequest() {
     
     const sortButton = document.getElementById("sort-button");
     const sortButtonByPrice = document.getElementById("sort-button-by-price");
+    const sortButtonByDate = document.getElementById("sort-button-by-date");
 
 
     // Sort the search results by price (ascending by default)
@@ -177,7 +205,6 @@ async function doGetRequest() {
 
     
     //-----------------------------------------SORT BY COUNTRY NAME--------------------------
-    let sortOrder = 'asc';
     sortButton.addEventListener("click", function() {
     sortOrder = sortResultsByCountryName(sortOrder);
     });
@@ -187,6 +214,17 @@ async function doGetRequest() {
     sortButtonByPrice.addEventListener('click', function() {
       sortByPrice()
       });
+
+    //-----------------------------------------TODO: SORT BY DATE--------------------------
+
+    sortButtonByDate.addEventListener('click', function() {
+      sortByDate()
+      });
+
+
+
+
+
 
       if (data.total > 1) { // Check if there are search results
         welcomeMessage.style.fontSize = '12px'; // Set font size for welcome message
@@ -244,18 +282,18 @@ async function doGetRequest() {
                 const badgeIcon = document.createElement('span');
                 badgeIcon.className = 'badge-icon';
                 badgeIcon.textContent = '🏆 Good Deal';
-                resultItem.style.backgroundColor = "#03C988";
+                resultItem.style.backgroundColor = "#91C788";
                 resultItem.appendChild(badgeIcon);
             } 
             else if (priceValue < MODERATE_PRICE_THRESHOLD) {
-                resultItem.style.backgroundColor = "#03C988";
+                resultItem.style.backgroundColor = "#52734D";
             } else if (priceValue >= MODERATE_PRICE_THRESHOLD && priceValue < 100) {
-                resultItem.style.backgroundColor = '#2F58CD';
+                resultItem.style.backgroundColor = '#F07B3F';
             } else if (priceValue >= HIGH_PRICE_THRESHOLD && priceValue < VERY_HIGH_PRICE_THRESHOLD){
-                resultItem.style.backgroundColor = '#3A1078';
+                resultItem.style.backgroundColor = '#EA5455';
             }
             else {
-                resultItem.style.backgroundColor = '#FF0303';
+                resultItem.style.backgroundColor = '#F6416C';
 
             }
             }
