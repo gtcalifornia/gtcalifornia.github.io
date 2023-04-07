@@ -270,13 +270,18 @@ async function doGetRequest() {
 
 }
 
+/**
+Increases the start and end date values by one day.
+*/
 function increaseDay() {
+    // Get the start and end dates from the input fields
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
+    // Add one day to each date
 
     newStartDate.setDate(newStartDate.getDate() + 1);
     newEndDate.setDate(newEndDate.getDate() + 1);
-
+    // Get the year, month, and date values for the new start and end dates
     var ys = newStartDate.getFullYear(),
         ms = newStartDate.getMonth() + 1, // january is month 0 in javascript
         ds = newStartDate.getDate();    
@@ -294,6 +299,9 @@ function increaseDay() {
     document.getElementById('endDate').value = dateStringNewEndDate
 }
 
+/**
+Increases the start date value by one day and the end date value by seven days.
+*/
 function increaseWeek() {
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
