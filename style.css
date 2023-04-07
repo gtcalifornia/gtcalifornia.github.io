@@ -121,7 +121,7 @@ body {
 
   
   .result-item {
-    background-color: #fff;
+    background-color: rgba(239, 239, 239, 0.1);
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
@@ -132,27 +132,30 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: black;
   }
   
   .result-description {
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
-    color: #ffffff;
+    color: black;
   }
   
   .result-date {
     font-size: 0.75rem;
     line-height: 1.5;
     margin: 0;
-    color: #ffffff;
+    color: black;
+  }
+  .a {
+    color: black;
   }
   .buy-button {
-    background-color: rgb(255, 251, 0);
-    color: #000000;
+    background-color: #ffffff;
+    color: white;
     font-weight: 700;
-    border: none;
+    border: 1px solid #003B73;
     border-radius: 4px;
     padding: 4px 16px;
     font-size: 14px;
@@ -165,15 +168,14 @@ body {
   }
   
   .buy-button:hover {
-    background-color: rgb(255, 140, 0);
-    color: #fff2f2;
+    border: 1px solid #003B73;
   }
 
   .badge-icon {
     padding: 5px 5px;
     font-size: 10px;
-    background-color: rgb(255, 251, 0);
-    color: rgb(0, 0, 0);
+    background-color: rgb(4, 90, 0);
+    color: rgb(255, 255, 255);
     font-weight: 700;
     border-radius: 8px;
   }
@@ -186,14 +188,19 @@ body {
     border-radius: 8px;
   }
   .btn-success {
-    background-color: #03C988;
-    border: 1px solid #03C988;
+    background-color: #320186;
+    border: 1px solid #320186;
   }
   .btn-primary {
-    background-color: #2F58CD;
-    border: 1px solid #2F58CD;
+    color:#000000;
+    background-color: #ffffff;
+    border: 2px solid #2F58CD;
   }
 
+  .btn-outline-success {
+    background-color: #ffffff;
+    border: 1px solid #2F58CD;
+  }
 
 
   
