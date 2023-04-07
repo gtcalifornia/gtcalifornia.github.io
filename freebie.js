@@ -7,6 +7,13 @@ const MODERATE_PRICE_THRESHOLD = 50;
 const HIGH_PRICE_THRESHOLD = 100;
 const VERY_HIGH_PRICE_THRESHOLD = 150;
 
+var bgPriceColor = {
+  GOOD_DEAL_PRICE_THRESHOLD: "white",
+  MODERATE_PRICE_THRESHOLD: "green",
+  HIGH_PRICE_THRESHOLD: "blue",
+  VERY_HIGH_PRICE_THRESHOLD: "red",
+
+};
 /**
  * Converts a string to a floating-point number.
  * 
@@ -186,7 +193,7 @@ async function doGetRequest() {
     
     // Change the search button color and label
     var searchButton = document.getElementById("search-button")
-    searchButton.style.backgroundColor = "red";
+    searchButton.style.backgroundColor = "#320186";
     searchButton.innerHTML = "New Search";
 
     // Clear any existing search results
@@ -277,18 +284,18 @@ async function doGetRequest() {
                 const badgeIcon = document.createElement('span');
                 badgeIcon.className = 'badge-icon';
                 badgeIcon.textContent = '🏆 Good Deal';
-                resultItem.style.backgroundColor = "#91C788";
+                resultItem.style.backgroundColor = bgPriceColor[GOOD_DEAL_PRICE_THRESHOLD];
                 resultItem.appendChild(badgeIcon);
             } 
             else if (priceValue < MODERATE_PRICE_THRESHOLD) {
-                resultItem.style.backgroundColor = "#52734D";
+                resultItem.style.backgroundColor = bgPriceColor[MODERATE_PRICE_THRESHOLD];
             } else if (priceValue >= MODERATE_PRICE_THRESHOLD && priceValue < 100) {
-                resultItem.style.backgroundColor = '#F07B3F';
+                resultItem.style.backgroundColor = bgPriceColor[HIGH_PRICE_THRESHOLD];
             } else if (priceValue >= HIGH_PRICE_THRESHOLD && priceValue < VERY_HIGH_PRICE_THRESHOLD){
-                resultItem.style.backgroundColor = '#EA5455';
+                resultItem.style.backgroundColor = bgPriceColor[VERY_HIGH_PRICE_THRESHOLD];
             }
             else {
-                resultItem.style.backgroundColor = '#F6416C';
+                resultItem.style.backgroundColor = bgPriceColor[VERY_HIGH_PRICE_THRESHOLD];
 
             }
             }
