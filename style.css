@@ -1,9 +1,24 @@
+/* Modern-looking color palette */
+:root {
+  --primary-color: #27496d;
+  --secondary-color: #4a4e69;
+  --accent-color: #f0544f;
+  --light-color: #ffffff;
+  --dark-color: #22223b;
+  --text-color: #333333;
+}
+
 body {
   background-color: #ffffff;
   font-family: 'Montserrat', sans-serif;
-  margin:revert;
+  margin:initial;
 }
-
+.top_place_logo {
+  background-color:#6f42c1;
+  color: white;
+  margin: 0;
+  padding: 10px 10px;
+}
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
