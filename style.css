@@ -304,3 +304,44 @@ body {
     left: 40px;
     transform: rotate(45deg);
 }
+
+#error_message {
+  margin-top: 30px;
+}
+
+.loading-container {
+  position: relative;
+  width: 100%; /* You can adjust the size of the container */
+  height: 100px;
+  overflow: hidden;
+}
+
+.loading-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7rem;
+  height: 7rem;
+  animation: shake 0.5s ease-in-out infinite;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading-container img:hover {
+  opacity: 0.5;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(5deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-5deg);
+  }
+}
