@@ -21,7 +21,7 @@
 
 <body>
     <div class="top_place_logo"> 
-        <h2>Cheap RyanAir Tickets &#128640 </h2>
+        <h2>Fly RyanAir Tickets &#128640 </h2>
     </div>
     <div class="col-lg-8 col-sm-12 mx-auto p-3 py-md-5">
         <main>
@@ -60,7 +60,13 @@
               <button class="btn btn-success btn-sm btn px-2" id="search-button" onclick="doGetRequest()">Search</button>
 
             </div>
-            <div id="loading-spinner"  class="loader" style="display:none;">
+            <div id="loading-spinner" class="loading-container" style="display:none;"> 
+                
+                <div class="loading-wrapper">
+                <img src="flymoon.png" alt="Loading image">
+                </div>
+              </div>
+            <!-- <div id="loading-spinner"  class="loader" style="display:none;">
                 <span style="--i: 1"></span>
                 <span style="--i: 2"></span>
                 <span style="--i: 3"></span>
@@ -85,7 +91,7 @@
                     <ion-icon name="airplane-sharp" class="icon"></ion-icon>
                 </div>
             </div>
-    
+     -->
 
 
             <h5 id="error_message">Let's go your dream place!</h5>
