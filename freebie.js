@@ -1,11 +1,17 @@
 let sortOrderByPrice = 'asc';
 let sortOrder = 'asc';
 let sortOrderByDate = 'asc';
+
+// Define a flag to track whether sorting has been applied
+let sortingApplied = false;
+console.log('initial stage',sortingApplied)
 const cheapTickets = [];
 const GOOD_DEAL_PRICE_THRESHOLD = 25;
 const MODERATE_PRICE_THRESHOLD = 50;
 const HIGH_PRICE_THRESHOLD = 100;
 const VERY_HIGH_PRICE_THRESHOLD = 150;
+
+
 
 var bgPriceColor = {
   GOOD_DEAL_PRICE_THRESHOLD: "white",
@@ -134,9 +140,8 @@ function sortByPrice() {
   // Toggle the sort order
   sortOrderByPrice = sortOrderByPrice === 'asc' ? 'desc' : 'asc';
 }
-
 function sortByDate() {
-  console.log('Sort Date:' , sortOrderByDate)
+  const sortTextElement = document.getElementById('sort-button-by-date');
   const searchResultsBox = document.getElementById('search_results_box');
   const resultItems = searchResultsBox.querySelectorAll('.result-item');
   
@@ -148,7 +153,6 @@ function sortByDate() {
     const bDate = new Date(b.querySelector('.result-date').textContent.split(' ')[0]);
     const result = aDate - bDate;
     return sortOrderByDate === 'asc' ? result : -result;
-
   });
   // Empty the search results box
   searchResultsBox.innerHTML = "";
@@ -158,12 +162,37 @@ function sortByDate() {
     searchResultsBox.appendChild(item);
   });
   // Toggle the sort order
+
   sortOrderByDate = sortOrderByDate === 'asc' ? 'desc' : 'asc';
+  console.log('triggered', sortingApplied)
+  // Set the text of sortTextElement based on the sort order
+  if (sortOrderByDate === 'asc') {
+    sortTextElement.textContent = 'Date-Latest';
+    sortingApplied = true
+
+    console.log('girdik')
+  } 
+  else if (sortOrderByDate === 'desc') {
+    sortTextElement.textContent = 'Date-Earliest';
+
+    console.log('ciktik')
+  }
+  else {
+    console.log('tikandi')
+  }
 }
 
 
 // This is an async function that sends a GET request to the Ryanair API with the specified parameters and displays the search results on the page
 async function doGetRequest() {
+      
+    // Change the search button color and label
+    var searchButton = document.getElementById("search-button")
+    searchButton.style.display = "none";
+
+    var inputForm = document.querySelector(".input_form");
+    inputForm.style.display = "none";
+
     checkOnlineStatus()
 
     // Display a loading spinner or bar
@@ -187,14 +216,9 @@ async function doGetRequest() {
     // Hide the loading spinner or bar after a delay
     setTimeout(() => {
         loadingSpinner.style.display = "none";
-      }, 500);
+      }, 750);
 
     showSortButtons()
-    
-    // Change the search button color and label
-    var searchButton = document.getElementById("search-button")
-    searchButton.style.backgroundColor = "#320186";
-    searchButton.innerHTML = "New Search";
 
     // Clear any existing search results
     var welcomeMessage=  document.getElementById("error_message");
@@ -230,7 +254,7 @@ async function doGetRequest() {
 
       if (data.total > 1) { // Check if there are search results
         welcomeMessage.style.fontSize = '12px'; // Set font size for welcome message
-        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> The places you can go between ${startDate} - ${endDate}`; // Set text for welcome message
+        welcomeMessage.innerHTML = `Departure Airport: ${fromWhere} </br> <b>${startDate} - ${endDate} </b`; // Set text for welcome message
     
         console.log(welcomeMessage); // Log welcome message to console
     
@@ -238,7 +262,7 @@ async function doGetRequest() {
             // var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; // Array of days of the week
     
             // Get flight information for current search result
-            const destination = `${data.fares[i].outbound.arrivalAirport.countryName}, ${data.fares[i].outbound.arrivalAirport.name}`;
+            const destination = `${data.fares[i].outbound.arrivalAirport.countryName} - ${data.fares[i].outbound.arrivalAirport.name}`;
             const flightName = `${data.fares[i].outbound.flightNumber}`;
             const price = `${data.fares[i].outbound.price.value} ${data.fares[i].outbound.price.currencyCode}`;
             const dateTimeString = `${data.fares[i].outbound.departureDate}`;
@@ -337,12 +361,15 @@ function increaseDay() {
 
     document.getElementById('startDate').value = dateStringNewStartDate
     document.getElementById('endDate').value = dateStringNewEndDate
+    
+    doGetRequest()
 }
 
 /**
 Increases the start date value by one day and the end date value by seven days.
 */
 function increaseWeek() {
+
     var newStartDate = new Date(document.getElementById("startDate").value);
     var newEndDate = new Date(document.getElementById("endDate").value);
 
@@ -364,4 +391,9 @@ function increaseWeek() {
 
     document.getElementById('startDate').value = dateStringNewStartDate
     document.getElementById('endDate').value = dateStringNewEndDate
+    console.log(dateStringNewStartDate, dateStringNewEndDate)
+
+
+    sortingApplied = true; // Set the flag to indicate sorting has been applied
+    doGetRequest()
 }
