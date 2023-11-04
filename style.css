@@ -14,7 +14,7 @@ body {
   margin:initial;
 }
 .top_place_logo {
-  background-color:#001685;
+  background-color:#abc900;
   color: white;
   margin: 0;
   padding: 10px 10px;
@@ -84,7 +84,7 @@ body {
     width: 100%;
     height: 50px;
     border: 1px 1px solid white;
-    background-color: #320186;
+    background-color: #abc900;
     box-shadow: 0 -1px 2px rgba(100, 0, 0, 0.2);
     z-index: 99;
 
@@ -110,10 +110,10 @@ body {
   }
   .bottom-nav a:hover {
   color: #ffffff;
-  background-color: #320186;
+  background-color: #abc900;
   }
   .bottom-nav a.active:hover {
-  background-color: #320186;
+  background-color: #abc900;
   color: #ffffff;
   }
   .bottom-nav a span {
@@ -168,9 +168,9 @@ body {
   }
   .buy-button {
     background-color: #ffffff;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: 700;
-    border: 1px solid #003B73;
+    border: 1px solid #abc900;
     border-radius: 4px;
     padding: 4px 16px;
     font-size: 14px;
@@ -183,7 +183,7 @@ body {
   }
   
   .buy-button:hover {
-    border: 1px solid #003B73;
+    border: 1px solid #abc900;
   }
 
   .badge-icon {
@@ -203,21 +203,39 @@ body {
     border-radius: 8px;
   }
   .btn-success {
-    background-color: #320186;
-    border: 1px solid #320186;
+    background-color: #abc900;
+    border: 1px solid #9eba00;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
   }
   .btn-primary {
     color:#000000;
     background-color: #ffffff;
-    border: 2px solid #2F58CD;
+    border: 2px solid #abc900;
   }
 
   .btn-outline-success {
-    background-color: #ffffff;
-    border: 1px solid #2F58CD;
+    background-color: #e19600;
+    border: 1px solid #abc900;
   }
 
+.btn-outline-primary {
+  color: black;
+  border: 2px solid #abc900;
 
+}
+
+.input_form {
+  background-color: rgb(148, 174, 0, 0.05);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5%;
+  border: 1px solid hsl(70, 100%, 22%, 0.1  );
+}
+
+.button_group {
+  margin-top: 15px;
+}
   
   @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -298,7 +316,7 @@ body {
 }
 .plane .icon{
     font-size: 20px;
-    color: #6610f2;
+    color: #abc900;
     position: absolute;
     top: -10px;
     left: 40px;
