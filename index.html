@@ -20,13 +20,11 @@
 </head>
 
 <body>
-    <div class="top_place_logo"> 
-        <h2>Fly RyanAir Tickets &#128640 </h2>
-    </div>
+
     <div class="col-lg-8 col-sm-12 mx-auto p-3 py-md-5">
         <main>
 
-            <div class="container">
+            <div class="container input_form">
                 <div class="row" id="input-group">
                     <div class="col-md-6 col-sm-12">
                         <div class="input-group mb-3">
@@ -53,13 +51,14 @@
                     </div>
                 </div>
             </div>
+            <div class="container button_group">
 
             <div class="mb-3">
               <button class="btn btn-primary btn-sm btn px-2" id="nextday" onclick="increaseDay()">Next Day</button>
               <button class="btn btn-primary btn-sm btn px-2" id="newxtweek" onclick="increaseWeek()">Next 7 Day</button>
               <button class="btn btn-success btn-sm btn px-2" id="search-button" onclick="doGetRequest()">Search</button>
 
-            </div>
+            </div></div>
             <div id="loading-spinner" class="loading-container" style="display:none;"> 
                 
                 <div class="loading-wrapper">
@@ -94,7 +93,7 @@
      -->
 
 
-            <h5 id="error_message">Let's go your dream place!</h5>
+            <h5 id="error_message"></h5>
             <button id="sort-button" class="btn btn-outline-primary btn-sort mb-3" style="visibility: hidden;">Sort Country</button>
             <button id="sort-button-by-price" class="btn btn-outline-primary btn-sort mb-3" style="visibility: hidden;">Sort Price</button>
             <button id="sort-button-by-date" class="btn btn-outline-primary btn-sort mb-3" style="visibility: hidden;">Sort Date</button>
@@ -108,7 +107,7 @@
 
         </main>
         <div class="bottom-nav">
-          <a href="index.html" class="active"><i class="fa fa-home"></i><span>Search 🔍</span></a>
+          <a href="index.html" class="active"><i class="fa fa-home"></i><span>New Search</span></a>
           <a href="hot_tickets.html"><i class="fa fa-search"></i><span>Hot Tickets</span></a>
     
         </div>
